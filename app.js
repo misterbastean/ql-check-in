@@ -5,17 +5,20 @@ const express         = require('express'),
       config          = require('./config'),
       methodOverride  = require('method-override');
 
+// // Require Routes
+const indexRoutes     = require('./routes/index'),
+      studentRoutes   = require('./routes/students');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://${config.database.username}:${config.database.password}@${config.database.dbhost}`, { useNewUrlParser: true })
+mongoose.connect(`mongodb://${config.database.username}:${config.database.password}@${config.database.dbhost}`, { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
-app.set('view enging', 'ejs')
+app.set('view engine', 'ejs')
 app.use(express.static('public')); // Publish assets folder
 app.use(methodOverride('_method'));
 
-app.get('/', (req, res) => {
-  res.send('Root route')
-});
+// Routes
+app.use(indexRoutes);
+app.use(studentRoutes);
 
 
 

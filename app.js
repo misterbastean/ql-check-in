@@ -5,13 +5,10 @@ const express         = require('express'),
       config          = require('./config'),
       methodOverride  = require('method-override');
 
-// Mongoose Models
-
-// const Punch           = require('../models/punch');
-
 // Require Routes
 const indexRoutes     = require('./routes/index'),
-      studentRoutes   = require('./routes/students');
+      studentRoutes   = require('./routes/students'),
+      punchRoutes     = require('./routes/punches');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(`mongodb://${config.database.username}:${config.database.password}@${config.database.dbhost}`, { useNewUrlParser: true });
@@ -23,6 +20,7 @@ app.use(methodOverride('_method'));
 // Routes
 app.use(indexRoutes);
 app.use(studentRoutes);
+app.use(punchRoutes);
 
 
 

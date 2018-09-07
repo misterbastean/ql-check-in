@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const punchSchema = new mongoose.Schema({
-  time: Date,
+  time: Object,
   type: String,
   sid: Number
 })

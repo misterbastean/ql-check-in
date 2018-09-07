@@ -1,10 +1,14 @@
 <!DOCTYPE html>
+<!--
+TODO:
+  - Get list of faculty and add to multi-select
+  - Get list of sports and add to multi-select
+ -->
 <html>
 <head>
   <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Coker QL Check-In</title>
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
       <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
@@ -20,6 +24,7 @@
     <form action="/students/new" method="POST">
       <div class="form-group">
         <label for="sid">Student ID#</label>
+        <small class="form-text text-muted">SCAN the Student ID - do NOT type by hand!</small>
         <input type="text" class="form-control" id="sid" name="sid" autofocus>
       </div>
       <div class="row">

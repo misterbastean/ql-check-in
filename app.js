@@ -5,7 +5,11 @@ const express         = require('express'),
       config          = require('./config'),
       methodOverride  = require('method-override');
 
-// // Require Routes
+// Mongoose Models
+
+// const Punch           = require('../models/punch');
+
+// Require Routes
 const indexRoutes     = require('./routes/index'),
       studentRoutes   = require('./routes/students');
 

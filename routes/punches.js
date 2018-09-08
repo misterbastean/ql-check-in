@@ -23,8 +23,6 @@ router.post('/punches', (req, res) => {
       console.log("Problem with Student lookup: ", err);
       res.redirect('/students/new')
     } else {
-      console.log("Student Object:");
-      console.log(student);
       const currentDate = moment()
       // Create new punch Object
       const newPunch = {
@@ -36,9 +34,6 @@ router.post('/punches', (req, res) => {
         if (err) {
           console.log("Problem with punch creation:", err);
         } else {
-          console.log("\n");
-          console.log('2nd Student Object');
-          console.log(student);
           // Associate punch with student
           student.punches.push(punch); // 'student' var comes from the previous function that queried the DB
           student.save();

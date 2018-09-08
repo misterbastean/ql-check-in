@@ -1,3 +1,28 @@
-<% include ./partials/header %>
-<h1>Check OUT Form</h1>
-<% include ./partials/footer %>
+<html>
+<head>
+  <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Coker QL Check-In</title>
+      <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1>Punch-Out</h1>
+    </div>
+    <div class="col-12 text-center">
+      <p>Scan student ID into field below, then click "Punch Out" button.</p>
+    </div>
+  </div>
+  <form action="/punches" method="POST">
+    <div class="form-group">
+      <label for="sid">Student ID</label>
+      <input type="text" class="form-control" id="sid" name="sid" placeholder="Scan Student ID" autofocus>
+    </div>
+    <input type="hidden" name='type' value='out'>
+    <button type="submit" class="btn btn-block btn-primary">Punch Out</button>
+  </form>
+</div>
+
+<% include ../partials/footer %>

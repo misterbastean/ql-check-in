@@ -28,7 +28,7 @@ app.use(methodOverride('_method'));
 
 // Routes
 app.use(indexRoutes);
-app.use(studentRoutes);
+app.use('/students', studentRoutes);
 app.use(punchRoutes);
 
 // Port/IP Listening

@@ -1,11 +1,33 @@
-<% include ../partials/header %>
-<h1>Show form for <%= student.firstName %> <%= student.lastName %></h1>
-<p>
-  Comments:
-</p>
-<% student.punches.forEach((punch) => { %>
-  <p>
-  <%= punch.time %> <%= punch.type %>
-  </p>
-<% }); %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coker QL Check-In</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h1><%= student.firstName %> <%= student.lastName %> QL Punches</h1>
+  <h3>Total Time:<%= totalTime %> minutes</h3>
+  <table class='table table-striped'>
+  <thead>
+    <tr>
+      <th scope='col'>Date</th>
+      <th scope='col'>Time</th>
+      <th scope='col'>In/Out</th>
+    </tr>
+  </thead>
+    <% student.punches.forEach((punch) => { %>
+    <tr>
+      <td><%= punch.date %></td>
+      <td><%= punch.time %></td>
+      <td><%= punch.type.charAt(0).toUpperCase() + punch.type.slice(1) %></td>
+    </tr>
+    <% }); %>
+  </table>
+  <a href='/' class='btn btn-block btn-primary btn-lg'>Back to Home Page</a>
+</div>
+
+
 <% include ../partials/footer %>

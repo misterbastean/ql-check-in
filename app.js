@@ -1,3 +1,8 @@
+// TODO
+// - Do math to calculate total time spent per month, week, total, etc.
+// - Create punch editing routes and add buttosn to show page
+
+
 const express         = require('express'),
       app             = express(),
       mongoose        = require('mongoose'),

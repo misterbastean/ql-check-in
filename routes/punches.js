@@ -15,17 +15,18 @@ router.get('/out', (req, res) => {
 
 // Create new Punch
 router.post('/punches', (req, res) => {
-  // console.log(req.body);
   // Lookup student by sid
   Student.findOne({sid: req.body.sid}, function (err, foundStudent) {
     if (err) {
       console.log("Problem with Student lookup: ", err);
       res.redirect('/students/new')
     } else {
-      const currentDate = moment().format('M-D-YYYY, kkmm');
+      const currentDate = moment();
       // Create new punch Object
       const newPunch = {
-        time: currentDate,
+        rawDate: new Date,
+        date: currentDate.format('M-D-YYYY'),
+        time: currentDate.format('h:mm a'),
         type: req.body.type
       };
       foundStudent.punches.push(newPunch); // 'student' var comes from the previous function that queried the DB

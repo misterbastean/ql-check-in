@@ -1,36 +1,37 @@
 module.exports = {
-	punchLoop: function(student, timeBlocks) {
-		missingPunches = 0;
+	punchLoop: function(punches) {
+		let missingPunches = 0;
+		timeBlocks = []
 		let i = 0;
-		while (i < student.punches.length) {
+		while (i < punches.length) {
 			if (
-				student.punches[i].type === 'in' &&
-				student.punches[i + 1].type === 'out'
+				punches[i].type === 'in' &&
+				punches[i + 1].type === 'out'
 			) {
 				timeBlocks.push({
-					in: student.punches[i].rawDate,
-					out: student.punches[i + 1].rawDate
+					in: punches[i].rawDate,
+					out: punches[i + 1].rawDate
 				});
 				i += 2;
 			} else if (
-				student.punches[i].type === 'in' &&
-				student.punches[i + 1].type === 'in'
+				punches[i].type === 'in' &&
+				punches[i + 1].type === 'in'
 			) {
 				// Handle if student did not punch out
 				timeBlocks.push({
-					in: student.punches[i].rawDate,
+					in: punches[i].rawDate,
 					out: 'Student did not punch out'
 				});
 				missingPunches++;
 				// Only increment by 1, since a punch is missing
 				i++;
 			} else if (
-				student.punches[i].type === 'out' &&
-				student.punches[i + 1].type === 'in'
+				punches[i].type === 'out' &&
+				punches[i + 1].type === 'in'
 			) {
 				timeBlocks.push({
 					in: 'Student did not punch in',
-					out: student.punches[i].rawDate
+					out: punches[i].rawDate
 				});
 				missingPunches++;
 				// Only increment by 1, since a punch is missing
@@ -41,7 +42,10 @@ module.exports = {
 				break;
 			}
 		}
-		return missingPunches;
+		return {
+			timeBlocks,
+			missingPunches
+		};
 	},
 	newStudent: function(req) {
 		return {
@@ -51,5 +55,16 @@ module.exports = {
 			faculty: req.body.faculty,
 			sports: req.body.sports
 		};
+	},
+	garbageHack: function(punches) {
+		if (punches.length % 2 == 0) {
+			console.log('Odd number of punches. Adding blank one at end.');
+			punches.push({
+				rawDate: '',
+				date: '',
+				time: '',
+				type: ''
+			});
+		}
 	}
 };

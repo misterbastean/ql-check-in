@@ -1,6 +1,6 @@
 // TODO
-// - Do math to calculate total time spent per month, week, total, etc.
 // - Create punch editing routes and add buttosn to show page
+// - Throw out punch blocks that extend beyond 1 day
 
 const express = require('express'),
 	app = express(),

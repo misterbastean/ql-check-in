@@ -7,8 +7,7 @@ const studentSchema = new mongoose.Schema({
   faculty: [String],
   sports: [String],
   punches: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Punch"
+    
   }]
 })
 

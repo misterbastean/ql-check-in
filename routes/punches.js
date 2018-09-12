@@ -1,7 +1,6 @@
 const express       = require('express'),
       router        = express.Router(),
       moment        = require('moment'),
-      Punch         = require('../models/punch'),
       Student       = require('../models/student');
 
 // Show Check-In Form
@@ -18,28 +17,20 @@ router.get('/out', (req, res) => {
 router.post('/punches', (req, res) => {
   // console.log(req.body);
   // Lookup student by sid
-  Student.findOne({sid: req.body.sid}, function (err, student) {
+  Student.findOne({sid: req.body.sid}, function (err, foundStudent) {
     if (err) {
       console.log("Problem with Student lookup: ", err);
       res.redirect('/students/new')
     } else {
-      const currentDate = moment()
+      const currentDate = moment().format('M-D-YYYY, kkmm');
       // Create new punch Object
       const newPunch = {
         time: currentDate,
-        type: req.body.type,
-        sid: req.body.sid
+        type: req.body.type
       };
-      Punch.create(newPunch, function (err, punch) {
-        if (err) {
-          console.log("Problem with punch creation:", err);
-        } else {
-          // Associate punch with student
-          student.punches.push(punch); // 'student' var comes from the previous function that queried the DB
-          student.save();
-          res.redirect('/');
-        }
-      })
+      foundStudent.punches.push(newPunch); // 'student' var comes from the previous function that queried the DB
+      foundStudent.save();
+      res.redirect('/');
     }
   })
 });

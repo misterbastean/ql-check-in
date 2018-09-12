@@ -1,3 +1,11 @@
 <% include ../partials/header %>
-<h1>Show Form for student number <%= studentId %></h1>
+<h1>Show form for <%= student.firstName %> <%= student.lastName %></h1>
+<p>
+  Comments:
+</p>
+<% student.punches.forEach((punch) => { %>
+  <p>
+  <%= punch.time %> <%= punch.type %>
+  </p>
+<% }); %>
 <% include ../partials/footer %>

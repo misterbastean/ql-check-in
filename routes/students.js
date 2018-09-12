@@ -31,7 +31,15 @@ router.post('/students/new', (req, res) => {
 
 // Show Posts for Individual Student
 router.get('/students/:id', (req, res) => {
-  res.render('students/show', {studentId: req.params.id})
+  // Get student
+  Student.findOne({sid: req.params.id}, (err, student) => {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log(student);
+      res.render('students/show', {student})
+    }
+  });
 })
 
 module.exports = router;

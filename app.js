@@ -22,9 +22,5 @@ app.use(indexRoutes);
 app.use(studentRoutes);
 app.use(punchRoutes);
 
-
-
-
-
 // Port/IP Listening
 app.listen(3000, () => console.log("Check-In Running on port 3000"))

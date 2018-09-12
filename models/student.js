@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
 
 const studentSchema = new mongoose.Schema({
-  sid: Number,
-  firstName: String,
-  lastName: String,
-  faculty: [String],
-  sports: [String],
-  punches: [{
-    
-  }]
-})
+	sid: Number,
+	firstName: String,
+	lastName: String,
+	faculty: [String],
+	sports: [String],
+	punches: [{}]
+});
 
-module.exports = mongoose.model("Student", studentSchema);
+module.exports = mongoose.model('Student', studentSchema);

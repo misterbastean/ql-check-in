@@ -9,3 +9,8 @@
     <% } %>
   </ul>
 </div>
+<% if (message.length > 0) { %>
+  <div class="wrapper">
+    <div class="alert alert-danger"><%= message %></div>
+  </div>
+<% } %>

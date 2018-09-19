@@ -5,7 +5,7 @@
 
 html {
   font-size: 62.5%;
-  font-family: 'Roboto', sans-serif;;
+  font-family: 'Roboto', sans-serif;
 }
 
 .wrapper {
@@ -104,4 +104,63 @@ html {
 
 .right-flex {
   float: right !important;
+}
+
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-size: 2rem;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-success hr {
+  border-top-color: #b1dfbb;
+}
+
+.alert-success .alert-link {
+  color: #0b2e1
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert-danger hr {
+  border-top-color: #f1b0b7;
+}
+
+.alert-danger .alert-link {
+  color: #491217;
+}
+
+.alert-link {
+  font-weight: 700;
+}
+
+.login-title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.login-form input, .login-form button {
+  font-size: 2rem;
+  margin-right: 2rem;
+  padding: 1rem;
+}
+
+.login-form button {
+  background-color: #54A0D3;
+  color: white;
+  border-radius: 0.8rem;
+  border: none;
 }

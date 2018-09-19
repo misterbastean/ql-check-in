@@ -10,7 +10,8 @@ const express 		= require('express'),
 	methodOverride 	= require('method-override'),
 	passport				= require('passport'),
 	LocalStrategy		= require('passport-local'),
-	User						= require('./models/user');
+	User						= require('./models/user'),
+	flash						= require('connect-flash');
 
 // Require Routes
 const indexRoutes = require('./routes/index'),
@@ -35,7 +36,7 @@ app.use(require('express-session')({
 	resave: false,
 	saveUninitialized: false
 }));
-
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -44,8 +45,11 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
 	res.locals.currentUser = req.user;
+	res.locals.message = req.flash("error")
 	next();
 })
+
+
 
 // Routes
 app.use(indexRoutes);

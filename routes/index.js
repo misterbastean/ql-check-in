@@ -47,4 +47,22 @@ router.post('/register', (req, res) => {
 		});
 });
 
+// Show login Form
+router.get('/login', (req, res) => {
+	res.render('login');
+});
+
+// Log user in
+router.post('/login',
+	passport.authenticate(
+		'local',
+		{
+			successRedirect: '/',
+			failureRedirect: '/login'
+		}),
+		(req, res) => {
+			console.log('Error in /login post route');
+	}
+);
+
 module.exports = router;

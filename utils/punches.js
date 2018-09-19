@@ -52,7 +52,7 @@ const punchLoop = function(punches) {
 
 const newStudent = function(req) {
 	return {
-		sid: req.body.sid,
+		_id: req.body.sid,
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		faculty: req.body.faculty,

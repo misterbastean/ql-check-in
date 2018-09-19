@@ -15,10 +15,18 @@ router.get('/out', (req, res) => {
 
 // Create new Punch
 router.post('/punches', (req, res) => {
+	// Make sure entered ID is a number
+	if (typeof req.body.id !== 'number') {
+		req.flash('error', "That's not a number!");
+		return res.redirect('/');
+	}
 	// Lookup student by sid
-	Student.findOne({ sid: req.body.sid }, function(err, foundStudent) {
+	Student.findOne({ _id: req.body.sid }, function(err, foundStudent) {
 		if (err) {
 			console.log('Problem with Student lookup: ', err);
+			res.redirect('/students/new');
+		} else if (!foundStudent) {
+			req.flash('error', "That ID has not been registered in this system yet.");
 			res.redirect('/students/new');
 		} else {
 			const currentDate = moment();
@@ -31,6 +39,11 @@ router.post('/punches', (req, res) => {
 			};
 			foundStudent.punches.push(newPunch); // 'student' var comes from the previous function that queried the DB
 			foundStudent.save();
+			if (newPunch.type === 'in') {
+				req.flash('success', `${foundStudent.firstName} punched in successfully!`)
+			} else if (newPunch.type === 'out') {
+				req.flash('success', `${foundStudent.firstName} punched out successfully!`)
+			}
 			res.redirect('/');
 		}
 	});

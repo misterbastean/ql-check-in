@@ -13,6 +13,15 @@ TODO:
 </head>
 <body>
   <div class="container">
+    <% if (error && error.length > 0) { %>
+      <div class="wrapper">
+        <div class="alert alert-danger"><%= error %></div>
+      </div>
+    <% } %><% if (success && success.length > 0) { %>
+      <div class="wrapper">
+        <div class="alert alert-success"><%= success %></div>
+      </div>
+    <% } %>
     <div class="row">
       <div class="col-12 text-center">
         <h1>New Student</h1>
@@ -25,19 +34,19 @@ TODO:
       <div class="form-group">
         <label for="sid">Student ID#</label>
         <small class="form-text text-muted">SCAN the Student ID - do NOT type by hand!</small>
-        <input type="text" class="form-control" id="sid" name="sid" autofocus>
+        <input type="text" class="form-control" id="sid" name="sid" autofocus required>
       </div>
       <div class="row">
         <div class="col-6">
           <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName">
+            <input type="text" class="form-control" id="firstName" name="firstName" required>
           </div>
         </div>
         <div class="col-6">
           <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" name="lastName">
+            <input type="text" class="form-control" id="lastName" name="lastName" required>
           </div>
         </div>
       </div>

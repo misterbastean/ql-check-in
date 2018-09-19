@@ -15,19 +15,26 @@ router.post('/new', (req, res) => {
 
 	Student.create(newStudent, (err, student) => {
 		if (err) {
-			console.log('Error in student creation', err);
+			console.log(err);
+			if (err.code === 11000) {
+				req.flash('error', "That student ID is already registered.");
+				res.redirect('/')
+			} else {
+				req.flash('error', `Error in student creation: ${err.errmsg}`);
+				res.redirect('/students/new')
+			}
+
 		} else {
-			console.log('Student added to DB:');
-			console.log(student);
+			req.flash('success', 'Student added!')
+			res.redirect('/');
 		}
 	});
-	res.redirect('/');
 });
 
 // Show Punches for Individual Student
 router.get('/:id', middleware.isLoggedIn, (req, res) => {
 	// Get student
-	Student.findOne({ sid: req.params.id }, (err, student) => {
+	Student.findOne({ _id: req.params.id }, (err, student) => {
 		if (err) {
 			console.log(err);
 		} else if (student == null) {
@@ -83,7 +90,7 @@ router.get('/:id', middleware.isLoggedIn, (req, res) => {
 
 // Delete Student from DB
 router.delete('/:id', (req, res) => {
-	Student.deleteOne({ sid: req.params.id}, (err) => {
+	Student.deleteOne({ _id: req.params.id}, (err) => {
 		if (err) {
 			console.log(err);
 		} else {

@@ -1,6 +1,4 @@
 // TODO
-// - Add authentication and authorization to view reports
-// - Make sure Navbar is on each page
 // - Add feedback after punches (connect-flash)
 
 const express 		= require('express'),

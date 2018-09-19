@@ -22,4 +22,10 @@ router.post('/report', (req, res) => {
 	res.redirect(`/students/${sid}`)
 });
 
+// ==============
+// AUTH ROUTES
+// ==============
+
+
+
 module.exports = router;

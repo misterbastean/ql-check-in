@@ -76,3 +76,32 @@ html {
   vertical-align: middle;
   padding: 1.6rem 2.2rem;
 }
+
+.navlinks {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navlink {
+  float: left;
+}
+
+.navlink a {
+  font-size: 2rem;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1.4rem 1.6rem;
+  text-decoration: none;
+}
+
+.navlink:hover {
+  background-color: #111;
+}
+
+.right-flex {
+  float: right !important;
+}

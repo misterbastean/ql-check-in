@@ -59,7 +59,13 @@ router.get('/:id', (req, res) => {
 			// Calculate time value of each block and add to totalTime
 			timeBlocks.forEach(block => {
 				datTime = block.out - block.in;
-				totalTime += datTime;
+				// Check if time extends beyond 1 day - if so, do nothing
+				if (datTime >= (28800000)) {
+					console.log("Total Time Error: One punch block was greater than 8 hours. Disregarded this likely error.");
+					return
+				} else {
+					totalTime += datTime;
+				}
 			});
 			totalTime = Math.round(totalTime / 60000);
 

@@ -91,7 +91,14 @@ const getMonthPunches = function(punches) {
 	// Calculate time value of each block and add to monthTime
 	monthBlocks.forEach(block => {
 		datTime = block.out - block.in;
-		monthTime += datTime;
+		// Check if time extends beyond 8 hours
+		if (datTime >= (28800000)) {
+			console.log("Month Time Error: One punch block was greater than 8 hours. Disregarded this likely error.");
+			return
+		} else {
+			monthTime += datTime;
+		}
+
 	});
 	monthTime = Math.round(monthTime / 60000);
 	return {

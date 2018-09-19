@@ -1,7 +1,8 @@
 const express = require('express'),
 	router = express.Router(),
 	User						= require('../models/user'),
-	passport = require('passport');
+	passport = require('passport'),
+	middleware = require('../utils/middleware');
 
 // Landing Page
 router.get('/', (req, res) => {
@@ -14,12 +15,12 @@ router.get('/index', (req, res) => {
 });
 
 // Show Report Request Form
-router.get('/report', (req, res) => {
+router.get('/report', middleware.isLoggedIn, (req, res) => {
 	res.render('report')
 });
 
 // Request Report Data
-router.post('/report', (req, res) => {
+router.post('/report', middleware.isLoggedIn, (req, res) => {
 	const sid = req.body.sid
 	res.redirect(`/students/${sid}`)
 });
@@ -64,5 +65,11 @@ router.post('/login',
 			console.log('Error in /login post route');
 	}
 );
+
+// Log user Out
+router.get('/logout', (req, res) => {
+	req.logout();
+	res.redirect('/');
+});
 
 module.exports = router;

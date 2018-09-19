@@ -1,7 +1,8 @@
 const express = require('express'),
 	router = express.Router(),
 	Student = require('../models/student'),
-	punchUtils = require('../utils/punches');
+	punchUtils = require('../utils/punches'),
+	middleware = require('../utils/middleware');
 
 // Show New Student Form
 router.get('/new', (req, res) => {
@@ -24,7 +25,7 @@ router.post('/new', (req, res) => {
 });
 
 // Show Punches for Individual Student
-router.get('/:id', (req, res) => {
+router.get('/:id', middleware.isLoggedIn, (req, res) => {
 	// Get student
 	Student.findOne({ sid: req.params.id }, (err, student) => {
 		if (err) {

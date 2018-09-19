@@ -25,6 +25,7 @@ mongoose.connect(
 	{ useNewUrlParser: true }
 );
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public')); // Publish assets folder
 app.use(methodOverride('_method'));

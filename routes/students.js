@@ -32,9 +32,11 @@ router.post('/new', (req, res) => {
 });
 
 // Show Punches for Individual Student
-router.get('/:id', middleware.isLoggedIn, (req, res) => {
+router.get('/:id', (req, res) => {
+	console.log("req.params.id:", req.params.id);
+	let findMe = req.params.id;
 	// Get student
-	Student.findOne({ _id: req.params.id }, (err, student) => {
+	Student.findOne({ _id: findMe }, (err, student) => {
 		if (err) {
 			console.log(err);
 		} else if (student == null) {

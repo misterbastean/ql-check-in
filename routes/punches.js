@@ -16,14 +16,15 @@ router.get('/out', (req, res) => {
 // Create new Punch
 router.post('/punches', (req, res) => {
 	// Make sure entered ID is a number
-	if (typeof req.body.id !== 'number') {
-		req.flash('error', "That's not a number!");
+	const isNum = /^\d+$/.test(req.body.sid)
+	if (!isNum) {
+		req.flash('error', "Student ID's should only be numbers");
 		return res.redirect('/');
 	}
 	// Lookup student by sid
 	Student.findOne({ _id: req.body.sid }, function(err, foundStudent) {
 		if (err) {
-			console.log('Problem with Student lookup: ', err);
+			req.flash('error', 'Oh snap! Something went wrong when looking up that student ID in the database');
 			res.redirect('/students/new');
 		} else if (!foundStudent) {
 			req.flash('error', "That ID has not been registered in this system yet.");

@@ -38,7 +38,7 @@ router.get('/:id', middleware.isLoggedIn, (req, res) => {
 		if (err) {
 			console.log(err);
 		} else if (student == null) {
-			console.log("No student exists for that ID number");
+			req.flash('error', "No student exists for that ID number");
 			res.redirect('/')
 		} else {
 			// Calculate total time
@@ -86,10 +86,8 @@ router.get('/:id', middleware.isLoggedIn, (req, res) => {
 	});
 });
 
-// Update Student Data
-
 // Delete Student from DB
-router.delete('/:id', (req, res) => {
+router.delete('/:id', middleware.isLoggedIn, (req, res) => {
 	Student.deleteOne({ _id: req.params.id}, (err) => {
 		if (err) {
 			console.log(err);

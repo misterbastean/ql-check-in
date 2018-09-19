@@ -1,0 +1,28 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Coker QL Check-In</title>
+      <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1>Student Reports</h1>
+    </div>
+    <div class="col-12 text-center">
+      <p>Enter Student ID to lookup their punch data.</p>
+    </div>
+  </div>
+  <form action="/report" method="POST">
+    <div class="form-group">
+      <label for="sid">Student ID</label>
+      <input type="text" class="form-control" id="sid" name="sid" placeholder="Enter Student ID" autofocus>
+    </div>
+    <input type="hidden" name='type' value='in'>
+    <button type="submit" class="btn btn-block btn-primary">Punch In</button>
+  </form>
+</div>
+
+<% include ./partials/footer %>

@@ -11,4 +11,15 @@ router.get('/index', (req, res) => {
 	res.render('index');
 });
 
+// Show Report Request Form
+router.get('/report', (req, res) => {
+	res.render('report')
+});
+
+// Request Report Data
+router.post('/report', (req, res) => {
+	const sid = req.body.sid
+	res.redirect(`/students/${sid}`)
+});
+
 module.exports = router;

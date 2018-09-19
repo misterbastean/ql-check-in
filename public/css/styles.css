@@ -8,6 +8,10 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
+.container {
+  font-size: 1.8rem;
+}
+
 .wrapper {
   margin: 0 auto;
   max-width: 100rem;
@@ -27,6 +31,16 @@ html {
   font-size: 8rem;
   text-align: center;
   margin: 7rem 2rem;
+}
+
+.show-title {
+  font-size: 6rem;
+  text-align: center;
+  margin: 3rem
+}
+
+.subtitle {
+  font-size: 3.2rem;
 }
 
 .punch-button {
@@ -112,7 +126,7 @@ html {
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .alert-success {
@@ -163,4 +177,9 @@ html {
   color: white;
   border-radius: 0.8rem;
   border: none;
+}
+
+.back-to-home-btn {
+  font-size: 3rem;
+  margin-bottom: 5rem;
 }

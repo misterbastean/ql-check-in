@@ -9,8 +9,12 @@
     <% } %>
   </ul>
 </div>
-<% if (message.length > 0) { %>
+<% if (error && error.length > 0) { %>
   <div class="wrapper">
-    <div class="alert alert-danger"><%= message %></div>
+    <div class="alert alert-danger"><%= error %></div>
+  </div>
+<% } %><% if (success && success.length > 0) { %>
+  <div class="wrapper">
+    <div class="alert alert-success"><%= success %></div>
   </div>
 <% } %>
